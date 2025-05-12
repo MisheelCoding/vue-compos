@@ -2,13 +2,13 @@
   <div v-if="['text', 'number', 'email', 'date'].includes(type)" class="space-y-2">
     <!-- Показывать список только если есть опции -->
     <div v-for="(opt, i) in options" :key="i" class="group relative">
-      <input v-model="opt.label" :type="type" class="border pr-8" />
+      <input v-model="opt.label" :type="type" class="border pr-8 border-red-300" />
       <button
         type="button"
         class="absolute right-1 top-1 text-red-500 hidden group-hover:block"
         @click="removeOption(i)"
       >
-        ✕
+        ✕some
       </button>
     </div>
 
