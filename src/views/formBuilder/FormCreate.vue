@@ -1,6 +1,7 @@
 <template>
   <div class="mb-[200px]">
     <h1 class="text-center text-orange-400 text-2xl">Form UI</h1>
+    <p class="text-green-500">Я тестирую Git!</p>
     <!-- 🗑️ -->
     <div>
       <div class="flex flex-col gap-5 items-start">
