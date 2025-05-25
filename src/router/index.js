@@ -103,6 +103,40 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("@/views/FormBuilderView.vue"),
     },
+    {
+      path: "/roadmap",
+      name: "roadmap",
+      component: () => import("@/views/roadmap/RoadMap.vue"),
+      children: [
+        {
+          path: "roadmap-Pinia-main", // ❗️убери `/` вначале
+          component: () => import("@/views/roadmap/roadmap-pinia/RoadmapPiniaMain.vue"),
+          children: [
+            {
+              path: "create-form",
+              component: () => import("@/views/roadmap/roadmap-pinia/form/RoadmapPiniaСreate.vue"),
+            },
+            {
+              path: "form-list",
+              component: () =>
+                import("@/views/roadmap/roadmap-pinia/form/RoadmapPiniaFormlist.vue"),
+            },
+            {
+              path: "forms-list/:id",
+              component: () =>
+                import("@/views/roadmap/roadmap-pinia/form/RoadmapPiniaFormview.vue"),
+              props: true,
+            },
+            {
+              path: "form-list/edit/:id",
+              component: () =>
+                import("@/views/roadmap/roadmap-pinia/form/RoadmapPiniaFormedit.vue"),
+              props: true,
+            },
+          ],
+        },
+      ],
+    },
   ],
 });
 
