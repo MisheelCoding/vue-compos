@@ -12,6 +12,7 @@
       <router-link to="/lifecycle">Lifecycle</router-link>
       <router-link to="/pinia">Pinia</router-link>
       <router-link to="/form">Form</router-link>
+      <router-link to="/todo">Todo</router-link>
       <router-link to="/roadmap">RoadMap</router-link>
     </nav>
   </div>
