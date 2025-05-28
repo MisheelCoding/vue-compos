@@ -4,6 +4,8 @@
 
     <form action="#">
       <input type="email" name="email" id="email" placeholder="write email..." />
+      <input type="password" name="password" id="password" placeholder="write password..." />
+      <button type="submit">Войти</button>
     </form>
   </div>
 </template>
