@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>First dev 1</h1>
-    <header>Header</header>
+    <h1>Login Form</h1>
   </div>
 </template>
 
