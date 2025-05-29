@@ -13,9 +13,17 @@
         autocomplete="email"
       />
       <span v-if="errors.email" class="text-red-500 font-n">{{ errors.email }}</span>
-      <input type="password" name="password" id="password" placeholder="write password..." />
+      <input
+        type="password"
+        autocomplete="current-password"
+        name="password"
+        id="password"
+        placeholder="write password..."
+        class="border"
+        v-model="password"
+      />
       <span v-if="errors.password" class="text-red-500 font-n">{{ errors.password }}</span>
-      <button type="submit">Войти</button>
+      <button class="border rounded-xl px-3" type="submit">Войти</button>
     </form>
   </div>
 </template>
@@ -24,6 +32,7 @@
 import { reactive, ref, watch } from "vue";
 
 const email = ref("");
+const password = ref("");
 
 const errors = reactive({
   email: "",
@@ -43,12 +52,29 @@ function submitForm() {
     errors.email = "Введите Email";
     hasError = true;
   }
+
+  if (!password.value) {
+    errors.password = "password обязтельно";
+    hasError = true;
+  } else if (!isPasswordValid(password.value)) {
+    errors.password = "пароль неверный";
+    hasError = true;
+  }
+
   if (hasError) return;
 }
 const isEmailValid = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) && val.length > 5;
+const isPasswordValid = (val) => val.length >= 8;
+
 watch(email, (newVal) => {
   if (errors.email && isEmailValid(newVal)) {
     errors.email = "";
+  }
+});
+
+watch(password, (newVal) => {
+  if (password.value && isPasswordValid(newVal)) {
+    errors.password = "";
   }
 });
 </script>
