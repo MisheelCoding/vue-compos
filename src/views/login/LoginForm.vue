@@ -23,13 +23,19 @@
         v-model="password"
       />
       <span v-if="errors.password" class="text-red-500 font-n">{{ errors.password }}</span>
-      <button class="border rounded-xl px-3" type="submit">Войти</button>
+      <button
+        :disabled="!isFormValid"
+        class="border rounded-xl px-3 disabled:opacity-40"
+        type="submit"
+      >
+        Войти
+      </button>
     </form>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 
 const email = ref("");
 const password = ref("");
@@ -60,11 +66,17 @@ function submitForm() {
     errors.password = "пароль неверный";
     hasError = true;
   }
-
   if (hasError) return;
+  setTimeout(() => {
+    alert("Авторизация успешно");
+  }, 500);
 }
 const isEmailValid = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) && val.length > 5;
 const isPasswordValid = (val) => val.length >= 8;
+
+const isFormValid = computed(() => {
+  return isEmailValid(email.value) && isPasswordValid(password.value);
+});
 
 watch(email, (newVal) => {
   if (errors.email && isEmailValid(newVal)) {
